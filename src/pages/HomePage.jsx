@@ -104,7 +104,7 @@ const HomePage = () => {
         </div>
       </section>
       {/* Benefits Section */}
-      <section className="py-16 border-b border-slate-100 bg-[fefacd]">
+      <section className="py-16 border-b border-slate-100 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="flex items-center gap-4 p-6 rounded-2xl bg-slate-50 hover:bg-white hover:shadow-lg transition-all duration-300">
@@ -154,18 +154,18 @@ const HomePage = () => {
           {loading ? (
             <Loader fullScreen={false} />
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {featuredProducts.map(product => (
                 <ProductCard key={product.id} product={product} />
               ))}
             </div>
           )}
 
-          <div className="mt-8 text-center sm:hidden">
+          {/* <div className="mt-8 text-center sm:hidden">
             <Link to="/products" className="btn-secondary inline-flex items-center gap-2">
               View All Products <ArrowRight className="w-4 h-4" />
             </Link>
-          </div>
+          </div> */}
         </div>
         <div className="mt-12 flex justify-center">
           <Link

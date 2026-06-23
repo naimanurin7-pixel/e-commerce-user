@@ -12,6 +12,7 @@ import {
   Search,
 } from 'lucide-react';
 import { logout } from '../features/auth/authSlice';
+import logo from '../assets/logo.png'
 
 
 const Navbar = () => {
@@ -43,7 +44,7 @@ const Navbar = () => {
     const params = new URLSearchParams(location.search);
     if (value) params.set('search', value);
     else params.delete('search');
-    navigate({ pathname: '/products', search: params.toString() }, { replace: true });
+    navigate({ pathname: '/', search: params.toString() }, { replace: true });
   };
 
   const closeSearch = () => {
@@ -65,13 +66,19 @@ const Navbar = () => {
     }
   }, [showSearch]);
 
+  const firstRender = useRef(true);
+
   useEffect(() => {
+    if (firstRender.current) {
+      firstRender.current = false;
+      return;
+    }
+
     const handler = setTimeout(() => {
       updateSearchParam(searchValue);
     }, 300);
 
     return () => clearTimeout(handler);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchValue]);
 
   const closeDrawer = () => setDrawerOpen(false);
@@ -92,8 +99,9 @@ const Navbar = () => {
             </button>
 
             <Link to="/" className="flex items-center gap-2 group">
-              <div className="bg-primary p-2 rounded-lg group-hover:scale-105 transition-transform">
-                <Package className="w-6 h-6 text-white" />
+              <div className=" p-2 rounded-lg group-hover:scale-105 transition-transform">
+                {/* <Package className="w-6 h-6 text-white" /> */}
+                <img src={logo} alt="" className='w-10 h-10' />
               </div>
 
               <span className="font-bold text-xl tracking-tight text-slate-900 group-hover:text-primary transition-colors">
