@@ -37,11 +37,10 @@ const HomePage = () => {
   return (
     <div>
       {/* Hero Section */}
-      <section className="relative h-[250px] sm:h-[400px] md:h-[500px] lg:h-[650px] overflow-hidden">
-        <img
-          src={heroImages[currentSlide]}
-          alt="Hero"
-          className="
+      <section className="relative h-[500px] sm:h-[550px] md:h-[600px] lg:h-[650px] overflow-hidden">        <img
+        src={heroImages[currentSlide]}
+        alt="Hero"
+        className="
       absolute
       inset-0
       w-full
@@ -51,19 +50,21 @@ const HomePage = () => {
     transition-opacity
       duration-700
     "
-        />
+      />
 
         <div className="absolute inset-0 bg-black/40"></div>
 
         <div className="relative z-10 flex items-center h-full">
           <div className="max-w-7xl mx-auto px-6">
-            <div className="max-w-2xl text-white">
+            <div className="max-w-xl text-white">
 
-              <h1 className="text-5xl lg:text-7xl font-bold mb-3">
-                Upgrade Your Lifestyle Today
+              <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-4">
+                Upgrade Your
+                <br />
+                Lifestyle Today
               </h1>
 
-              <p className="text-lg mb-8">
+              <p className="text-sm sm:text-lg md:text-xl text-slate-100 mb-6 max-w-md leading-relaxed">
                 Discover premium collections with
                 seamless shopping experience.
               </p>
@@ -71,15 +72,24 @@ const HomePage = () => {
               <Link
                 to="/products"
                 className="
-            bg-yellow-400
-            text-black
-            px-8
-            py-3
-            rounded-full
-            font-bold
-            hover:bg-yellow-300
-            transition
-          "
+inline-flex
+items-center
+justify-center
+bg-yellow-400
+text-black
+px-6
+py-3
+md:px-8
+md:py-4
+rounded-full
+font-bold
+text-base
+md:text-lg
+hover:bg-yellow-300
+transition-all
+duration-300
+shadow-lg
+"
               >
                 Shop Now
               </Link>
