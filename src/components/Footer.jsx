@@ -7,7 +7,7 @@ const Footer = () => {
     <footer className="bg-white border-t border-slate-200 pt-16 pb-8 mt-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-          
+
           {/* Brand */}
           <div className="col-span-1 md:col-span-1">
             <Link to="/" className="flex items-center gap-2 group mb-4">
@@ -33,7 +33,7 @@ const Footer = () => {
             <h4 className="font-bold text-slate-900 mb-4">Quick Links</h4>
             <ul className="space-y-3">
               <li><Link to="/" className="text-slate-500 hover:text-primary text-sm transition-colors">Home</Link></li>
-              <li><Link to="/products" className="text-slate-500 hover:text-primary text-sm transition-colors">Products</Link></li>
+              <li><Link to="" className="text-slate-500 hover:text-primary text-sm transition-colors">Products</Link></li>
               <li><Link to="/cart" className="text-slate-500 hover:text-primary text-sm transition-colors">Shopping Cart</Link></li>
               <li><Link to="/login" className="text-slate-500 hover:text-primary text-sm transition-colors">Login / Register</Link></li>
             </ul>
@@ -55,9 +55,9 @@ const Footer = () => {
             <h4 className="font-bold text-slate-900 mb-4">Newsletter</h4>
             <p className="text-slate-500 text-sm mb-4">Subscribe to receive updates, access to exclusive deals, and more.</p>
             <form className="flex">
-              <input 
-                type="email" 
-                placeholder="Enter your email" 
+              <input
+                type="email"
+                placeholder="Enter your email"
                 className="input-field rounded-r-none border-r-0 focus:ring-0 focus:border-primary text-sm py-2"
                 required
               />
@@ -66,9 +66,9 @@ const Footer = () => {
               </button>
             </form>
           </div>
-          
+
         </div>
-        
+
         <div className="border-t border-slate-100 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-slate-400 text-sm text-center md:text-left mb-4 md:mb-0">
             &copy; {new Date().getFullYear()} LumiCart. All rights reserved.

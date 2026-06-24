@@ -37,8 +37,7 @@ const HomePage = () => {
   return (
     <div>
       {/* Hero Section */}
-      <section className="relative h-[600px] overflow-hidden">
-
+      <section className="relative h-[250px] sm:h-[400px] md:h-[500px] lg:h-[650px] overflow-hidden">
         <img
           src={heroImages[currentSlide]}
           alt="Hero"
@@ -48,7 +47,8 @@ const HomePage = () => {
       w-full
       h-full
       object-cover
-      transition-all
+      object-center
+    transition-opacity
       duration-700
     "
         />

@@ -4,20 +4,20 @@ import { fetchProducts } from '../features/products/productSlice';
 import ProductCard from '../components/ProductCard';
 import Loader from '../components/Loader';
 import EmptyState from '../components/EmptyState';
-import { Search, SlidersHorizontal , X} from 'lucide-react';
+import { Search, SlidersHorizontal, X } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 // import { SlidersHorizontal, X } from 'lucide-react';
 
 const ProductsPage = () => {
   const dispatch = useDispatch();
   const { items, loading, error } = useSelector(state => state.products);
-  
+
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [sortOrder, setSortOrder] = useState('default');
   const location = useLocation();
   const navigate = useNavigate();
-const [showFilters, setShowFilters] = useState(false);
+  const [showFilters, setShowFilters] = useState(false);
   // Sync local state from URL query params
   useEffect(() => {
     const params = new URLSearchParams(location.search);
@@ -45,7 +45,7 @@ const [showFilters, setShowFilters] = useState(false);
 
     // Search
     if (searchTerm) {
-      result = result.filter(item => 
+      result = result.filter(item =>
         item.title.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
@@ -93,31 +93,31 @@ const [showFilters, setShowFilters] = useState(false);
   return (
     <div className="bg-slate-50 min-h-screen py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Page Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-slate-900 mb-4">All Products</h1>
 
           <div className="mb-4 md:hidden">
-  <button
-    onClick={() => setShowFilters(!showFilters)}
-    className="flex items-center gap-2 bg-white border border-slate-300 px-4 py-2 rounded-lg shadow-sm"
-  >
-    {showFilters ? (
-      <X className="w-5 h-5" />
-    ) : (
-      <SlidersHorizontal className="w-5 h-5" />
-    )}
+            <button
+              onClick={() => setShowFilters(!showFilters)}
+              className="flex items-center gap-2 bg-white border border-slate-300 px-4 py-2 rounded-lg shadow-sm"
+            >
+              {showFilters ? (
+                <X className="w-5 h-5" />
+              ) : (
+                <SlidersHorizontal className="w-5 h-5" />
+              )}
 
-    {showFilters ? 'Close Filters' : 'Filters'}
-  </button>
-</div>
-          
+              {showFilters ? 'Close Filters' : 'Filters'}
+            </button>
+          </div>
+
           {/* Controls Bar */}
           {/* <div className="bg-white p-4 rounded-xl shadow-sm border border-slate-200 flex flex-col md:flex-row gap-8 items-center justify-between"> */}
-            
-            {/* Search */}
-            {/* <div className="relative w-full md:w-96">
+
+          {/* Search */}
+          {/* <div className="relative w-full md:w-96">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5" />
               <input 
                 type="text" 
@@ -135,8 +135,8 @@ const [showFilters, setShowFilters] = useState(false);
               />
             </div> */}
 
-<div
-  className={`
+          <div
+            className={`
     ${showFilters ? 'flex' : 'hidden'}
     md:flex
     flex-col
@@ -145,68 +145,68 @@ const [showFilters, setShowFilters] = useState(false);
     w-full
     md:w-auto
   `}
->              {/* Category Filter */}
-              <div className="flex items-center gap-2 w-full md:w-auto">
-                {/* <SlidersHorizontal className="w-5 h-5 text-slate-500 md:hidden" /> */}
-                <select 
-                  value={selectedCategory} 
-                  onChange={(e) => {
-                    const value = e.target.value;
-                    setSelectedCategory(value);
-                    const params = new URLSearchParams(location.search);
-                    if (value && value !== 'all') params.set('category', value);
-                    else params.delete('category');
-                    navigate({ pathname: '/products', search: params.toString() }, { replace: true });
-                  }}
-                   className="input-field py-2 capitalize w-full md:w-auto">
-                
-                  {categories.map(cat => (
-                    <option key={cat} value={cat}>{cat}</option>
-                  ))}
-                </select>
-              </div>
-
-              {/* Sort */}
-              <select 
-                value={sortOrder} 
+          >              {/* Category Filter */}
+            <div className="flex items-center gap-2 w-full md:w-auto">
+              {/* <SlidersHorizontal className="w-5 h-5 text-slate-500 md:hidden" /> */}
+              <select
+                value={selectedCategory}
                 onChange={(e) => {
                   const value = e.target.value;
-                  setSortOrder(value);
+                  setSelectedCategory(value);
                   const params = new URLSearchParams(location.search);
-                  if (value && value !== 'default') params.set('sort', value);
-                  else params.delete('sort');
+                  if (value && value !== 'all') params.set('category', value);
+                  else params.delete('category');
                   navigate({ pathname: '/products', search: params.toString() }, { replace: true });
                 }}
-                className="input-field py-2 w-full md:w-auto">
-              
-                <option value="default">Default Sorting</option>
-                <option value="price-asc">Price: Low to High</option>
-                <option value="price-desc">Price: High to Low</option>
-                <option value="name-asc">Name: A to Z</option>
-                <option value="name-desc">Name: Z to A</option>
+                className="input-field py-2 capitalize w-full md:w-auto">
+
+                {categories.map(cat => (
+                  <option key={cat} value={cat}>{cat}</option>
+                ))}
               </select>
             </div>
 
-          </div>
-        </div>
+            {/* Sort */}
+            <select
+              value={sortOrder}
+              onChange={(e) => {
+                const value = e.target.value;
+                setSortOrder(value);
+                const params = new URLSearchParams(location.search);
+                if (value && value !== 'default') params.set('sort', value);
+                else params.delete('sort');
+                navigate({ pathname: '/products', search: params.toString() }, { replace: true });
+              }}
+              className="input-field py-2 w-full md:w-auto">
 
-        {/* Product Grid */}
-        {loading ? (
-          <Loader />
-        ) : filteredAndSortedProducts.length > 0 ? (
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            {filteredAndSortedProducts.map(product => (
-              <ProductCard key={product.id} product={product} />
-            ))}
+              <option value="default">Default Sorting</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="name-asc">Name: A to Z</option>
+              <option value="name-desc">Name: Z to A</option>
+            </select>
           </div>
-        ) : (
-          <EmptyState 
-            message="No products found matching your criteria" 
-            actionText="Clear Filters"
-            actionLink={null}
-          />
-        )}
+
+        </div>
       </div>
+
+      {/* Product Grid */}
+      {loading ? (
+        <Loader />
+      ) : filteredAndSortedProducts.length > 0 ? (
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          {filteredAndSortedProducts.map(product => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
+      ) : (
+        <EmptyState
+          message="No products found matching your criteria"
+          actionText="Clear Filters"
+          actionLink={null}
+        />
+      )}
+    </div>
     // </div>
   );
 };

@@ -42,9 +42,20 @@ const Navbar = () => {
 
   const updateSearchParam = (value) => {
     const params = new URLSearchParams(location.search);
-    if (value) params.set('search', value);
-    else params.delete('search');
-    navigate({ pathname: '/', search: params.toString() }, { replace: true });
+
+    if (value.trim()) {
+      params.set("search", value.trim());
+    } else {
+      params.delete("search");
+    }
+
+    navigate(
+      {
+        pathname: location.pathname,
+        search: params.toString(),
+      },
+      { replace: true }
+    );
   };
 
   const closeSearch = () => {
@@ -99,12 +110,16 @@ const Navbar = () => {
             </button>
 
             <Link to="/" className="flex items-center gap-2 group">
-              <div className=" p-2 rounded-lg group-hover:scale-105 transition-transform">
-                {/* <Package className="w-6 h-6 text-white" /> */}
-                <img src={logo} alt="" className='w-10 h-10' />
+              <div className="group-hover:scale-105 transition-transform">
+                <img
+                  src={logo}
+                  alt="Logo"
+                  className="h-10 w-auto sm:h-12 md:h-12 object-contain"
+                />
               </div>
 
-              <span className="font-bold text-xl tracking-tight text-slate-900 group-hover:text-primary transition-colors">
+              {/* Desktop-il mathram text */}
+              <span className="hidden md:block font-bold text-xl tracking-tight text-slate-900 group-hover:text-primary transition-colors">
                 LumiCart
               </span>
             </Link>
@@ -304,23 +319,26 @@ const Navbar = () => {
           {/* Header */}
           <div className="p-4 border-b border-slate-200 flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <div className="bg-primary p-2 rounded-lg">
-                <Package className="w-6 h-6 text-white" />
+              <div className="flex items-center gap-3">
+                <img
+                  src={logo}
+                  alt="Logo"
+                  className="h-12 w-auto object-contain"
+                />
+
+                <span className="font-bold text-lg">
+                  LumiCart
+                </span>
               </div>
 
-              <span className="font-bold text-lg">
-                LumiCart
-              </span>
+              <button
+                onClick={closeDrawer}
+                className="p-2 text-slate-700 hover:text-red-500"
+              >
+                <X className="w-5 h-5" />
+              </button>
             </div>
-
-            <button
-              onClick={closeDrawer}
-              className="p-2 text-slate-700 hover:text-red-500"
-            >
-              <X className="w-5 h-5" />
-            </button>
           </div>
-
           {/* Navigation */}
           <nav className="p-4 space-y-3">
 
@@ -333,7 +351,7 @@ const Navbar = () => {
             </Link>
 
             <Link
-              to="/products"
+              to=""
               onClick={closeDrawer}
               className="block px-3 py-3 rounded-lg text-slate-700 hover:bg-slate-100"
             >
