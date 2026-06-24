@@ -40,23 +40,36 @@ const Navbar = () => {
     navigate('/');
   };
 
+  // const updateSearchParam = (value) => {
+  //   const params = new URLSearchParams(location.search);
+
+  //   if (value.trim()) {
+  //     params.set("search", value.trim());
+  //   } else {
+  //     params.delete("search");
+  //   }
+
+  //   navigate(
+  //     {
+  //       pathname: location.pathname,
+  //       search: params.toString(),
+  //     },
+  //     { replace: true }
+  //   );
+  // };
+
+
   const updateSearchParam = (value) => {
-    const params = new URLSearchParams(location.search);
+    if (!value.trim()) return;
 
-    if (value.trim()) {
-      params.set("search", value.trim());
-    } else {
-      params.delete("search");
-    }
+    const params = new URLSearchParams();
+    params.set("search", value.trim());
 
-    navigate(
-      {
-        pathname: location.pathname,
-        search: params.toString(),
-      },
-      { replace: true }
-    );
+    navigate(`/products?${params.toString()}`);
   };
+
+
+
 
   const closeSearch = () => {
     setShowSearch(false);
@@ -351,7 +364,7 @@ const Navbar = () => {
             </Link>
 
             <Link
-              to=""
+              to="/products"
               onClick={closeDrawer}
               className="block px-3 py-3 rounded-lg text-slate-700 hover:bg-slate-100"
             >
